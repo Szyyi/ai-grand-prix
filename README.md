@@ -42,7 +42,7 @@ The AI Grand Prix, hosted by Anduril Industries and the Drone Champions League (
 This repository contains a **complete, modular, stress-tested autonomy framework** designed from day one to:
 
 1. **Guarantee gate completion** — reliability is the prerequisite; speed is the optimisation target.
-2. **Decouple intelligence from interface** — when the competition platform drops, we swap one file, not the stack.
+2. **Decouple intelligence from interface** — when the competition platform drops, I swap one file, not the stack.
 3. **Win under adversarial conditions** — wind, noise, small gates, degraded motors. If it works in hell, it works on race day.
 
 ---
@@ -211,7 +211,7 @@ ai-grand-prix/
 
 ### Path Planning — Three Strategies
 
-The planner is the core differentiator. We implement three strategies, each with distinct trade-offs:
+The planner is the core differentiator. I have implemented three strategies, each with distinct trade-offs:
 
 ```
 STRATEGY COMPARISON
@@ -222,7 +222,7 @@ STRATEGY COMPARISON
   Gate-to-gate direct       Cubic B-spline          Curvature-optimised
   Linear interpolation      C2 smooth curves        Corner-cutting
   Most reliable             Smooth velocity         Fastest theoretical
-  Slowest overall           Good balance            Competition target
+  SloIst overall           Good balance            Competition target
 
        G1------G2              G1~~~~G2              G1\    /G2
        |       |              /      \                 \--/
@@ -237,7 +237,7 @@ STRATEGY COMPARISON
 - Computes optimal crossing points within each gate boundary
 - Shifts crossing positions toward the inside of turns (corner cutting)
 - Uses Menger curvature estimation for dynamic speed profiling
-- Higher curvature = lower speed limit, ensuring stability through tight sections
+- Higher curvature = loIr speed limit, ensuring stability through tight sections
 - Parametric B-spline fitting for C2 continuous trajectories
 
 ### Flight Controller — Cascaded PID
@@ -441,7 +441,7 @@ Gate passage uses a robust plane-crossing algorithm:
     regime (hovering vs high-speed cruise vs tight turns).
 
 [ ] Obstacle Awareness -- if the competition introduces obstacles or
-    no-fly zones between gates, integrate avoidance into the planner.
+    no-fly zones betIen gates, integrate avoidance into the planner.
 
 [ ] Multi-Lap Strategy -- optimise across multiple laps: aggressive
     first lap for position, then consistent pace management.
@@ -453,7 +453,7 @@ Gate passage uses a robust plane-crossing algorithm:
 ### Phase 4: Competition Integration
 
 ```
-[ ] Competition Adapter -- thin I/O translation layer between DCL
+[ ] Competition Adapter -- thin I/O translation layer betIen DCL
     platform and our autonomy stack. Will be built when interface
     specs are published.
 
@@ -621,21 +621,21 @@ course = RaceCourse(
 
 > *"A fast drone that misses a gate scores zero. A slow drone that completes all gates wins."*
 
-The scoring system prioritises gate completion. Our architecture enforces this: every speed optimisation is gated behind a reliability check. The racing line planner reduces speed through high-curvature sections. The stall detector falls back to the simplest planner if the drone gets stuck.
+The scoring system prioritises gate completion. The architecture enforces this: every speed optimisation is gated behind a reliability check. The racing line planner reduces speed through high-curvature sections. The stall detector falls back to the simplest planner if the drone gets stuck.
 
 ### 2. Modularity at Every Layer
 
-The competition interface is unknown until they publish specs. Our defence:
+The competition interface is unknown until they publish specs. My defence:
 
 ```
 Competition Platform  <-->  Adapter (1 file)  <-->  Autonomy Stack (unchanged)
 ```
 
-When the DCL platform SDK drops, we write one adapter file. The entire planning, control, and intelligence stack remains untouched. This also means we can swap planners, controllers, and state estimators independently.
+When the DCL platform SDK drops, I write one adapter file. The entire planning, control, and intelligence stack remains untouched. This also means I can swap planners, controllers, and state estimators independently.
 
 ### 3. Test in Conditions Worse Than Race Day
 
-Every module is validated against conditions more extreme than what we expect in competition. If the stack survives 8 m/s wind with 5 m/s gusts, 0.3m sensor noise, and 1.5m gates simultaneously, it will handle race-day conditions.
+Every module is validated against conditions more extreme than what I expect in competition. If the stack survives 8 m/s wind with 5 m/s gusts, 0.3m sensor noise, and 1.5m gates simultaneously, it will handle race-day conditions.
 
 ### 4. Deterministic and Reproducible
 
@@ -663,7 +663,7 @@ from core.drone_state import DroneState, Vec3, Quaternion
 from core.racecourse import RaceCourse, Gate
 
 class CompetitionAdapter:
-    """Translates between DCL platform API and our autonomy stack."""
+    """Translates betIen DCL platform API and our autonomy stack."""
 
     def __init__(self):
         self.stack = AutonomyStack(AutonomyConfig())
@@ -717,6 +717,61 @@ This is a competitive entry. Contributions are welcome from team members only.
 - All tuning parameters exposed through config objects, never hardcoded
 
 ---
+
+## Privacy, Copyright & Intellectual Property
+
+### Code Ownership
+
+All source code, algorithms, documentation, and associated materials in this repository are the original work of the author. Full intellectual property rights are retained.
+
+As confirmed by the AI Grand Prix organisers, participants retain **full ownership** of their algorithm, source code, and documentation. By submitting an entry, participants grant the AI Grand Prix permission to use submitted code **strictly for operating, monitoring, and judging the competition**, and **only for the duration of the competition period**. There is no transfer of IP to Anduril Industries or any founding partner.
+
+### Open Repository — Terms of Use
+
+This repository is made publicly available for **educational and transparency purposes only**. Public visibility does not constitute an open-source licence.
+
+**You may:**
+- View, read, and study the code
+- Reference the architecture and design patterns in your own original work
+- Follow development progress and provide feedback via Issues or Discussions
+
+**You may not:**
+- Copy, reproduce, or redistribute any part of this codebase
+- Submit any portion of this code as your own competition entry
+- Use this code, in whole or in part, in any commercial product or service
+- Create derivative works based on this repository
+
+### Third-Party Dependencies
+
+This project uses the following open-source libraries under their respective licences:
+
+| Dependency | Licence |
+|------------|---------|
+| NumPy | BSD-3-Clause |
+| SciPy | BSD-3-Clause |
+| Matplotlib | PSF-based |
+
+No proprietary or classified dependencies are included.
+
+### Defence Cyber Marvel 2026
+
+Elements of this project build upon experience and architectural patterns developed during work on the DCM6 AI Drone Challenge Platform. No classified, restricted, or MOD-owned material is contained within this repository. All code is original and written independently.
+
+### Competition Compliance
+
+This codebase is designed to comply with the AI Grand Prix competition rules:
+- No external network calls during execution
+- No human-in-the-loop intervention
+- No exploitation of platform vulnerabilities
+- Full autonomous operation from algorithm only
+
+### Contact
+
+For any queries regarding intellectual property, usage rights, or collaboration, contact the author directly via LinkedIn or the contact details associated with this repository.
+
+---
+
+*Copyright 2025-2026. All rights reserved.*
 
 <div align="center">
 
